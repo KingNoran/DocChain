@@ -1,6 +1,6 @@
 
 
-const Dashboard = () => {
+const AdminDashboard = () => {
     return (
         <div>
             <h1>Welcome </h1>
@@ -8,4 +8,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default AdminDashboard
