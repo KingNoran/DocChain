@@ -31,7 +31,14 @@ router.post("/admin", async (request, response) => {
             return response.status(401).json({ message: "Invalid password" });
         }
 
-        return response.status(200).json({ message: "Login successful" });
+        return response.status(200).json({
+            message: "Login successful",
+            user: {
+                name: user.name,
+                email: user.email,
+                role: user.role,
+            },
+        });
     } catch (error) {
         console.error(error);
         return response.status(500).json({ message: "An error occurred." });
@@ -64,7 +71,16 @@ router.post("/student", async (request, response) => {
             return response.status(401).json({ message: "Invalid password" });
         }
 
-        return response.status(200).json({ message: "Login successful" });
+        return response.status(200).json({
+            message: "Login successful",
+            user: {
+                student_number: user.student_number,
+                name: user.name,
+                email: user.email,
+                course: user.course,
+                role: user.role,
+            },
+        });
     } catch (error) {
         console.error(error);
         return response.status(500).json({ message: "An error occurred." });

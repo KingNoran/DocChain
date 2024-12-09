@@ -14,7 +14,7 @@ const LandingPage = () => {
                 type="text"
                 placeholder="Public key"
             />
-            <button className="bg-black text-white font-semibold text-2xl mb-32 border-2 border-solid border-black px-7 py-1 rounded-3xl hover:bg-white hover:text-black">
+            <button className="bg-black text-white font-semibold text-2xl mb-32 border-2 border-solid border-black px-7 py-1 rounded-3xl hover:bg-slate-900 hover:border-slate-900">
                 Enter
             </button>
             <Link to="/login">

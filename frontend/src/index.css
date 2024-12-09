@@ -1,5 +1,5 @@
 @tailwind base;
-@tailwind components; 
+@tailwind components;
 @tailwind utilities;
 
 *, 
@@ -10,7 +10,7 @@
     box-sizing: border-box;
 }
 
-body {
+body, #root {
     min-height: 100vh;
 }
 
