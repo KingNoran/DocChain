@@ -1,6 +1,7 @@
 import OptionCard from "../components/login/OptionCard";
 import { RiAdminLine } from "react-icons/ri";
 import { PiStudentBold } from "react-icons/pi";
+import { LuUserPen } from "react-icons/lu";
 import BackButton from "../components/BackButton";
 import { Link } from "react-router-dom";    
 
@@ -18,6 +19,9 @@ const Login = () => {
                     </Link>
                     <Link to={"/login/admin"}>
                         <OptionCard role="admin" Icon={RiAdminLine} />
+                    </Link>
+                    <Link to={"/login/registrar"}>
+                        <OptionCard role="registrar" Icon={LuUserPen} />
                     </Link>
                 </div>
             </div>
