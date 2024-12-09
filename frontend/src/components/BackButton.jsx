@@ -5,7 +5,7 @@ const BackButton = ({ destination = "/" }) => {
     return (
         <div>
             <Link to={destination}>
-                <FaArrowLeftLong className="text-4xl" />
+                <FaArrowLeftLong />
             </Link>
         </div>
     );

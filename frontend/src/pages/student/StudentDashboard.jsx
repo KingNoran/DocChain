@@ -1,11 +1,11 @@
 
 
-const StudentDashboard = () => {
+const RegistrarDashboard = () => {
     return (
         <div>
-            <h1>Welcome </h1>
+
         </div>
     )
 }
 
-export default StudentDashboard
+export default RegistrarDashboard
