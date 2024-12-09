@@ -1,6 +1,7 @@
 import express from "express";
 import { Admin } from "../models/adminAccountModel.js";
 import { Student } from "../models/studentAccountModel.js";
+import { Registrar } from "../models/registrarAccountModel.js";
 import { comparePassword } from "../utils/passwordUtils.js";
 
 const router = express.Router();
