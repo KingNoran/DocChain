@@ -31,7 +31,7 @@ export const UserProvider = ({ children }) => {
             );
             setUser(response.data.user);
             enqueueSnackbar("Logged in Successfully", { variant: "success" });
-            navigate(`/dashboard/${role}`);
+            navigate(`/${role}/dashboard`);
         } catch (error) {
             console.error(error);
             const errorMessage =

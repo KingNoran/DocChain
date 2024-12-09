@@ -1,11 +1,22 @@
+import { useEffect } from "react";
+import { useUser } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
+const StudentDashboard = () => {
+    const { user, logout } = useUser();
+    const navigate = useNavigate();
 
-const RegistrarDashboard = () => {
+    useEffect(() => {
+        if (!user) {
+            navigate("/login");
+        }
+    }, [user, navigate]);
+
     return (
         <div>
-
+            <h1>Welcome</h1>
         </div>
-    )
-}
+    );
+};
 
-export default RegistrarDashboard
+export default StudentDashboard;
