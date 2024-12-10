@@ -1,7 +1,6 @@
 import PDFDocument from "pdfkit";
-import fs from "fs";
 
-export const generatePDF = (user, response) => {
+export const generatePDF = (student, response) => {
     const MARGIN = 72; // 1 inch
     const PAGE_HEIGHT = 792; // Letter size (612 x 792)
 
@@ -19,7 +18,7 @@ export const generatePDF = (user, response) => {
         CreationDate: new Date(),
     };
 
-    doc.pipe(fs.createWriteStream(response));
+    doc.pipe(response);
 
     // Title
     doc.font("Times-Bold")
@@ -31,11 +30,11 @@ export const generatePDF = (user, response) => {
     doc.moveDown(2)
         .font("Times-Roman")
         .fontSize(12)
-        .text(`Student Number: ${user.student_number}`);
+        .text(`Student Number: ${student.student_number}`);
 
     // Name
     doc.moveDown()
-        .text(`Student Name: ${user.name}`);
+        .text(`Student Name: ${student.name}`);
 
     // Address
     doc.moveDown()
@@ -47,7 +46,7 @@ export const generatePDF = (user, response) => {
 
     // Course
     doc.moveDown()
-        .text(`Course: ${user.course}`);
+        .text(`Course: ${student.course}`);
 
     // Summary 
     doc.moveDown(2)

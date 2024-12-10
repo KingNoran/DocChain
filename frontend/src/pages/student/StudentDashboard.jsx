@@ -12,6 +12,7 @@ const StudentDashboard = () => {
 
     useEffect(() => {
         if (!user || !user.role === "student") {
+            localStorage.setItem("user", null);
             navigate("/login");
         }
     }, [user, navigate]);
