@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import loginRoute from "./routes/loginRoute.js";
 import createRoute from "./routes/createRoute.js";
+import studentRoute from "./routes/studentRoute.js";
 
 dotenv.config();
 
@@ -27,6 +28,8 @@ app.get("/", (request, response) => {
 app.use("/login", loginRoute);
 // Admin Create route
 app.use("/admin", createRoute);
+// Student Route
+app.use("/student", studentRoute);
 
 // Connect to database
 mongoose

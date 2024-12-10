@@ -6,6 +6,7 @@ import RegistrarDashboard from "./pages/registrar/RegistrarDashboard";
 import CreateAccount from "./pages/admin/CreateAccount";
 import Login from "./pages/Login";
 import LoginAccount from "./pages/LoginAccount";
+import ViewTranscript from "./pages/student/ViewTranscript";
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/registrar/dashboard" element={<RegistrarDashboard />} />
             <Route path="/admin/create/:role" element={<CreateAccount />} />
+            <Route path="/student/transcript" element={<ViewTranscript />} />
         </Routes>
     );
 };

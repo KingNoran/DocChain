@@ -1,5 +1,5 @@
-import { useState, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
@@ -8,7 +8,13 @@ const LoginAccount = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { role } = useParams();
-    const { login, loading } = useUser();  
+    const { login, logout, loading } = useUser();  
+
+    // Reset user
+    useEffect(() => {
+        logout();
+    }, []);
+
 
     const handleLogin = (event) => {
         event.preventDefault();
