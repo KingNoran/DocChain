@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useUser } from "../../context/UserContext";
+import { useUser } from "../../context/UserContext.jsx";
 import { useNavigate } from "react-router-dom";
 import RegistrarHeader from "../../components/RegistrarHeader.jsx";
 
@@ -8,12 +8,13 @@ const RegistrarDashboard = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!user || user.role !== "admin") {
+        if (!user || user.role !== "registrar") {
+            localStorage.setItem("user", null);
             navigate("/login");
         }
     }, [user, navigate]);
 
-    return user && user.role === "admin" ? (
+    return user && user.role === "registrar" ? (
         <div>
             <RegistrarHeader />
             <div id="body" className="flex flex-wrap flex-row h-[85vh] w-[100vw] items-center p-[100px] gap-8">
