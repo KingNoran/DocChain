@@ -1,4 +1,4 @@
-import Logo from "./HomeButton";
+import Logo from "../../components/HomeButton";
 
 const RegistrarHeader = () =>{
     const items = ["Home", "Database", "Request Process"];

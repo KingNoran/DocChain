@@ -3,7 +3,7 @@ import { useUser } from "../../context/UserContext.jsx";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaUser } from "react-icons/fa";
-import RegistrarHeader from "../../components/RegistrarHeader.jsx";
+import RegistrarHeader from "./RegistrarHeader.jsx";
 import Spinner from "../../components/Spinner.jsx";
 
 const RegistrarDashboard = () => {
