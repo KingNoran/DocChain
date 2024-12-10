@@ -10,6 +10,7 @@ const AdminDashboard = () => {
     useEffect(() => {
         if (!user || user.role !== "admin") {
             navigate("/login");
+            localStorage.setItem("user", null);
         }
     }, [user, navigate]);
 
