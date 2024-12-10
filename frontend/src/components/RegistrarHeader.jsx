@@ -8,7 +8,7 @@ const RegistrarHeader = () =>{
     return(
         <div className="w-[100vw] h-[100px] bg-black flex justify-between items-center px-8">
             <div id="logo">
-                <Logo destination="/dashboard/registrar"></Logo>
+                <Logo destination="/registrar/dashboard"></Logo>
             </div>
             <ul id="nav" className="flex justify-evenly w-[550px] items-center">
                 {navs}

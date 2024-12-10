@@ -10,7 +10,11 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(() => {
+        const storedUser = localStorage.getItem("user");
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
+    
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
@@ -30,8 +34,9 @@ export const UserProvider = ({ children }) => {
                 credentials
             );
             setUser(response.data.user);
+            localStorage.setItem("user", JSON.stringify(response.data.user));
             enqueueSnackbar("Logged in Successfully", { variant: "success" });
-            navigate(`/dashboard/${role}`);
+            navigate(`/${role}/dashboard`);
         } catch (error) {
             console.error(error);
             const errorMessage =

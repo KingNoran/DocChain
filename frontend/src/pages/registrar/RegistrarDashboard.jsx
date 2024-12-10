@@ -1,7 +1,19 @@
+import { useEffect } from "react";
+import { useUser } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 import RegistrarHeader from "../../components/RegistrarHeader.jsx";
 
 const RegistrarDashboard = () => {
-    return (
+    const { user, logout } = useUser();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!user || user.role !== "admin") {
+            navigate("/login");
+        }
+    }, [user, navigate]);
+
+    return user && user.role === "admin" ? (
         <div>
             <RegistrarHeader />
             <div id="body" className="flex flex-wrap flex-row h-[85vh] w-[100vw] items-center p-[100px] gap-8">
@@ -29,7 +41,9 @@ const RegistrarDashboard = () => {
                 </div>
             </div>
         </div>
-    )
+    ) : (
+        <h1>Unauthorized</h1>
+    );
 }
 
 export default RegistrarDashboard;

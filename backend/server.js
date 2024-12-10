@@ -1,9 +1,12 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
 import mongoose from "mongoose";
-import { PORT, URL } from "./config.js";
 import loginRoute from "./routes/loginRoute.js";
 import createRoute from "./routes/createRoute.js";
+import studentRoute from "./routes/studentRoute.js";
+
+dotenv.config();
 
 const app = express();
 
@@ -25,15 +28,17 @@ app.get("/", (request, response) => {
 app.use("/login", loginRoute);
 // Admin Create route
 app.use("/admin", createRoute);
+// Student Route
+app.use("/student", studentRoute);
 
 // Connect to database
 mongoose
-    .connect(URL)
+    .connect(process.env.MONGODB_URI)
     .then(() => {
         console.log("App connected to the database");
 
-        app.listen(PORT, () => {
-            console.log(`App running on port: ${PORT}`);
+        app.listen(process.env.PORT || 5555, () => {
+            console.log(`App running on port: ${process.env.PORT || 5555}`);
         });
     })
     .catch((error) => {
