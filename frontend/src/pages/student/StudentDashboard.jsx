@@ -31,7 +31,7 @@ const StudentDashboard = () => {
           Doc. Chain
         </div>
         <nav className="flex items-center space-x-4">
-          <a href="#" className="hover:text-blue-600 transition-colors duration-300">Home</a>
+
           <a href="#" className="hover:text-blue-600 transition-colors duration-300">Transaction</a>
           <div className="relative group">
             <div className="cursor-pointer hover:text-blue-600 transition-colors duration-300">
@@ -43,12 +43,12 @@ const StudentDashboard = () => {
               <p className="text-xs text-gray-600">{studentInfo.department}</p>
             </div>
           </div>
-          <div className="relative">
+          <div className="relative">  
             <div className="cursor-pointer hover:text-blue-600 transition-colors duration-300">
               Notifications
             </div>
             <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-              2
+              
             </span>
           </div>
         </nav>
@@ -98,9 +98,9 @@ const StudentDashboard = () => {
             <img src={metamaskIcon} alt="MetaMask" className="flex justify-center w-16 h-16 transform hover:scale-110 transition-transform duration-300" />
           </div>
 
-          {/* Transactions Card */}
+          {/* Document Card */}
           <div className="border-2 rounded-xl p-4 hover:shadow-lg transition-shadow duration-300">
-            <h3 className="text-lg font-bold mb-2">Recent Transactions</h3>
+            <h3 className="text-lg font-bold mb-2">Document</h3>
             <div className="flex items-start space-x-2 hover:bg-gray-50 p-2 rounded-lg transition-colors duration-300">
               <div className="flex-shrink-0">
                 <IoMdDocument className="w-8 h-8 bg-gray-200 rounded"/>
