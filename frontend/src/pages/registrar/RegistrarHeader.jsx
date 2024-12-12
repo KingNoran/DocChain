@@ -1,5 +1,6 @@
 import Logo from "../../components/HomeButton";
 
+
 const RegistrarHeader = () => {
     const navItems = ["Messenger", "Database", "Request Process"];
 
