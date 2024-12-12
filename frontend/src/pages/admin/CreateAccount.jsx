@@ -39,7 +39,7 @@ const CreateAccount = () => {
 
         const userData = {
             studentNo,
-            name,
+            name: `${firstName} ${lastName}`,
             email,
             password,
             course,
@@ -75,7 +75,7 @@ const CreateAccount = () => {
                 >
                     {loading ? <Spinner /> : ''}
                     <select
-                        className="p-1 focus:outline-none mr-auto text-xl rounded-3xl"
+                        className="p-1 focus:outline-none mr-auto text-xl rounded-3xl cursor-pointer"
                         value={role}
                         onChange={(event) => {
                             setRole(event.target.value);
