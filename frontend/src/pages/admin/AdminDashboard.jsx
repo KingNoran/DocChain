@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AdminHeader from "./AdminHeader";
 
 const AdminDashboard = () => {
-    const { user, logout } = useUser();
+    const { user } = useUser();
     const navigate = useNavigate();
 
     useEffect(() => {
