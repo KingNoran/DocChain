@@ -33,43 +33,64 @@ const RegistrarDashboard = () => {
 	}, []); 
 
     return user && user.role === "registrar" ? (
-        <div>
+        <div className="min-h-screen bg-white">
             <RegistrarHeader />
-            <div id="body" className="flex flex-wrap  h-[85vh] w-[100vw] items-center p-[100px] gap-8">
-                <div id="leftside" className="flex flex-col gap-5 w-[1100px]">
-                    <div id="database" className="border-black border-[3px] px-[4rem] flex flex-col h-[500px] rounded-[50px]">
-                        <div id="dbHeader" className="flex justify-between py-[1rem]">
-                            <span className="font-bold text-[2rem]">Database</span>
-                            <span className="font-semibold text-[1.5rem] underline hover:cursor-pointer">See More</span>
+            <div className="flex flex-wrap p-8 gap-8 max-w-[1800px] mx-auto">
+                {/* Left Side */}
+                <div className="flex-1 min-w-[600px] flex flex-col gap-6">
+                    {/* Database Section */}
+                    <div className="border-2 border-black rounded-[25px] p-9">
+                        <div className="flex justify-between items-center mb-4">
+                            <h2 className="text-2xl font-bold">DataBase</h2>
+                            <button className="text-lg underline">See More</button>
                         </div>
-                        <ul id="dbBody" className="p-5 flex flex-col gap-5 justify-center overflow-y-scroll">
+                        <div className="space-y-5 max-h-[500px] overflow-y-auto">
                             {loading ? <Spinner /> : (
-                                students.map((student, index) => (
-                                    <li key={student._id} className=" flex gap-5 w-full border-2 border-solid border-black rounded-lg p-4">
-                                        <div>
-                                            <FaUser className="text-7xl" />
+                                students.map((student) => (
+                                    <div key={student._id} className="flex items-center gap-4 border-2 border-black rounded-[15px] p-4">
+                                        <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
+                                            <FaUser className="text-4xl" />
                                         </div>
-                                        <div>
-                                            <p>Student number: {student.student_number}</p>
-                                            <p>Student name: {student.name}</p>
-                                            <p>Course: {student.course}</p>
-                                        </div>  
-                                    </li>
+                                        <div className="flex-1">
+                                            <h3 className="font-bold">{student.name}</h3>
+                                            <p>Program: {student.course}</p>
+                                            <p>Electives: Blockchain Technology</p>
+                                            <p className="text-sm text-gray-600">Last Student Information Update: {new Date(student.updatedAt).toLocaleString()}</p>
+                                        </div>
+                                    </div>
                                 ))
                             )}
-                        </ul>
+                        </div>
                     </div>
-                    <div id="SVP" className="border-black border-[3px] flex flex-col h-[200px] rounded-[50px]"></div>
                 </div>
-                <div id="rightside" className="flex flex-col gap-[55px] justify-between w-[500px]">
-                    <div id="verifiedstudents" className="border-black border-[3px] flex flex-col h-[200px] rounded-[40px]">
 
+                {/* Right Side */}
+                <div className="w-[400px] flex flex-col gap-6">
+                    {/* Verified Students Counter */}
+                    <div className="border-2 border-black rounded-[25px] p-6">
+                        <h2 className="text-xl font-bold mb-4">Number of Verified Students</h2>
+                        <div className="text-center">
+                            <p className="text-2xl font-bold">1,540 out of 1,976</p>
+                            <p>Students</p>
+                        </div>
                     </div>
-                    <div id="studentinfo" className="border-black border-[3px] flex flex-col h-[200px] rounded-[40px]">
 
-                    </div>
-                    <div id="notice" className="border-black border-[3px] flex flex-col h-[200px] rounded-[40px]">
-
+                    {/* Updated Student Information */}
+                    <div className="border-2 border-black rounded-[25px] p-6">
+                        <h2 className="text-xl font-bold mb-4">Updated Student Information</h2>
+                        <div className="space-y-2">
+                            {students.slice(0, 5).map((student) => (
+                                <div key={student._id} className="flex items-center gap-5">
+                                    <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                                        <FaUser className="text-sm" />
+                                    </div>
+                                    <div>
+                                        <p className="font-semibold">{student.name}</p>
+                                        <p className="text-sm text-gray-600">Last Student Information Update: {new Date(student.updatedAt).toLocaleString()}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
