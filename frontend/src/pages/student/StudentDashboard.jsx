@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
@@ -6,9 +6,10 @@ import { MdOutlineQrCodeScanner } from "react-icons/md";
 import { IoMdDocument } from "react-icons/io";
 import { IoNotifications } from "react-icons/io5";
 import metamaskIcon from "../../assets/metamask-icon.svg";
+import HomeButton from "../../components/HomeButton";
 
 const StudentDashboard = () => {
-  const { user } = useUser();
+  const { user, logout } = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,9 +19,9 @@ const StudentDashboard = () => {
   }, [user, navigate]);
 
   const studentInfo = {
-    name: "Ken Reyes",
-    studentId: "2024-0001",
-    department: "Computer Science"
+    name: user.name,
+    studentId: user.student_number,
+    department: user.course
   };
 
   return user && user.role === "student" ? (
@@ -28,14 +29,12 @@ const StudentDashboard = () => {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white shadow-sm">
         <div className="flex items-center justify-between max-w-7xl mx-auto px-4 py-4">
-          <h1 className="text-2xl font-bold italic cursor-pointer hover:text-blue-600 transition-all">
-            Doc. Chain
-          </h1>
+          <HomeButton destination="/student/dashboard" />
           
           <nav className="flex items-center space-x-8">
-            <a href="#" className="hidden md:block hover:text-blue-600 transition-all">
+            <Link to={`/student/transcript/${studentInfo.studentId}`} className="hidden md:block hover:text-blue-600 transition-all">
               Document
-            </a>
+            </Link>
             
             <div className="relative group">
               <button className="flex items-center space-x-2 hover:text-blue-600 transition-all">
@@ -46,6 +45,7 @@ const StudentDashboard = () => {
                   <span className="font-medium">{studentInfo.name}</span>
                   <span className="text-sm text-gray-600">ID: {studentInfo.studentId}</span>
                   <span className="text-sm text-gray-600">{studentInfo.department}</span>
+                  <span className="font-medium ml-auto cursor-pointer" onClick={logout}>Logout</span>
                 </div>
               </div>
             </div>
@@ -115,11 +115,13 @@ const StudentDashboard = () => {
                 <h3 className="text-xl font-bold mb-4">Document</h3>
                 <div className="flex items-start space-x-4 p-4 hover:bg-gray-50 rounded-xl transition-all">
                   <IoMdDocument className="flex-shrink-0 w-12 h-12 p-2 bg-gray-100 rounded-xl text-gray-600" />
-                  <div className="flex flex-col space-y-1">
-                    <span className="font-medium">Updated TOR</span>
-                    <span className="text-sm text-gray-600">Date: Jan 24, 2024</span>
-                    <span className="text-xs text-gray-500">Public key: f82c5wxt2559xxv</span>
-                  </div>
+                  <Link to={`/student/transcript/${studentInfo.studentId}`}>  
+                    <div className="flex flex-col space-y-1">                
+                        <span className="font-medium">Updated TOR</span>
+                        <span className="text-sm text-gray-600">Date: Jan 24, 2024</span>
+                        <span className="text-xs text-gray-500">Public key: f82c5wxt2559xxv</span>
+                    </div>
+                  </Link>
                 </div>
               </div>
 
