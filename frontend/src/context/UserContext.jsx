@@ -49,6 +49,7 @@ export const UserProvider = ({ children }) => {
 
     const logout = () => {
         setUser(null);
+        navigate("/login");
     };
 
     useEffect(() => {

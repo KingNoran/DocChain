@@ -23,11 +23,11 @@ const Login = () => {
                     Welcome to Doc. Chain!
                 </h1>
                 <div className="flex gap-5 justify-center items-center">
-                    <Link to={"/login/student"}>
-                        <OptionCard role="student" Icon={PiStudentBold} />
-                    </Link>
                     <Link to={"/login/admin"}>
                         <OptionCard role="admin" Icon={RiAdminLine} />
+                    </Link>
+                    <Link to={"/login/student"}>
+                        <OptionCard role="student" Icon={PiStudentBold} />
                     </Link>
                     <Link to={"/login/registrar"}>
                         <OptionCard role="registrar" Icon={LuUserPen} />

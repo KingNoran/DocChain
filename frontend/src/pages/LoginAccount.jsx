@@ -12,7 +12,7 @@ const LoginAccount = () => {
 
     // Reset user
     useEffect(() => {
-        logout();
+        logout;
     }, []);
 
 
