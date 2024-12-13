@@ -4,7 +4,6 @@ import { Student } from "../models/studentAccountModel.js"
 
 const router = express.Router();
 
-
 router.get("/transcript/:student_number", async (request, response) => {
     try {
         const { student_number } = request.params;
