@@ -32,12 +32,11 @@ const LoginAccount = () => {
             <BackButton destination="/login" />
             
             <div className="flex flex-col justify-center items-center">
-                {loading ? <Spinner /> : ''}
-
                 <h1 className="text-4xl m-16 font-semibold">
                     Welcome {role.charAt(0).toUpperCase() + role.slice(1)}!
                 </h1>
-                <form className="flex flex-col gap-5 items-center px-10 py-7 border-2 border-black rounded-lg" onSubmit={handleLogin}>
+                <form className="flex flex-col gap-5 items-center justify-center px-10 py-7 border-2 border-black rounded-lg" onSubmit={handleLogin}>
+                    {loading ? <Spinner /> : ''}
                     <input
                         className="px-3 py-1.5 border-2 w-72 border-black rounded-3xl"
                         type="email"

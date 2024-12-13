@@ -44,7 +44,7 @@ const RegistrarDashboard = () => {
                             <h2 className="text-2xl font-bold">DataBase</h2>
                             <button className="text-lg underline">See More</button>
                         </div>
-                        <div className="space-y-5    max-h-[500px] overflow-y-auto">
+                        <div className="space-y-5 max-h-[500px] overflow-y-auto">
                             {loading ? <Spinner /> : (
                                 students.map((student) => (
                                     <div key={student._id} className="flex items-center gap-4 border-2 border-black rounded-[15px] p-4">
@@ -79,7 +79,7 @@ const RegistrarDashboard = () => {
                     <div className="border-2 border-black rounded-[25px] p-6">
                         <h2 className="text-xl font-bold mb-4">Updated Student Information</h2>
                         <div className="space-y-2">
-                            {students.slice(0, 5).sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)).map((student) => (
+                            {students.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)).slice(0, 5).map((student) => (
                                 <div key={student._id} className="flex items-center gap-5">
                                     <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
                                         <FaUser className="text-sm" />
