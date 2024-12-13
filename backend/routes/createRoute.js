@@ -116,3 +116,4 @@ router.post("/create/admin", async (request, response) => {
 });
 
 export default router;
+
