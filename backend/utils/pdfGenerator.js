@@ -1,9 +1,8 @@
 import PDFDocument from "pdfkit";
 
-export const generatePDF = (student) => {
+export const generatePDF = (student, response) => {
     const MARGIN = 72; // 1 inch
     const PAGE_HEIGHT = 792; // Letter size (612 x 792)
-    const buffers = [];
 
     // Default
     const doc = new PDFDocument({
@@ -11,65 +10,59 @@ export const generatePDF = (student) => {
         font: "Times-Roman",
         fontSize: 12,
     });
-    
-    doc.on("data", buffers.push.bind(buffers));
-    
-    return new Promise((resolve, reject) => { 
-        doc.on("end", () => { 
-            const pdfBuffer = Buffer.concat(buffers); 
-            resolve(pdfBuffer); 
-        });
 
-        // Metadata
-        doc.info = {
-            Title: "Academic Transcript",
-            Author: "DocChain",
-            CreationDate: new Date(),
-        };
+    // Metadata
+    doc.info = {
+        Title: "Academic Transcript",
+        Author: "DocChain",
+        CreationDate: new Date(),
+    };
 
-        // Title
-        doc.font("Times-Bold")
-            .fontSize(16)
-            .text("Academic Transcript", { align: "center" });
+    doc.pipe(response);
+
+    // Title
+    doc.font("Times-Bold")
+        .fontSize(16)
+        .text("Academic Transcript", { align: "center" });
 
 
-        // Student number 
-        doc.moveDown(2)
-            .font("Times-Roman")
-            .fontSize(12)
-            .text(`Student Number: ${student.studentNo}`);
+    // Student number 
+    doc.moveDown(2)
+        .font("Times-Roman")
+        .fontSize(12)
+        .text(`Student Number: ${student.student_number}`);
 
-        // Name
-        doc.moveDown()
-            .text(`Student Name: ${student.name}`);
+    // Name
+    doc.moveDown()
+        .text(`Student Name: ${student.name}`);
 
-        // Address
-        doc.moveDown()
-            .text(`Address: ${student.address}`);
+    // Address
+    doc.moveDown()
+        .text("Address: 123 CAA Las Pinas City");
 
-        // Date of Birth
-        doc.moveDown()
-            .text(`Date of Birth: ${student.birthDate}`);
+    // Date of Birth
+    doc.moveDown()
+        .text("Date of Birth: 3/23/2003");
 
-        // Course
-        doc.moveDown()
-            .text(`Course: ${student.course}`);
+    // Course
+    doc.moveDown()
+        .text(`Course: ${student.course}`);
 
-        // Summary 
-        doc.moveDown(2)
-            .font("Times-Bold")
-            .text("Academic Summary", { align: "center" });
+    // Summary 
+    doc.moveDown(2)
+        .font("Times-Bold")
+        .text("Academic Summary", { align: "center" });
 
-        doc.moveDown(2)
-            .font("Times-Roman")
-            .fontSize(12)
-            .text(`GWA: ${student.gwa}`);
+    doc.moveDown(2)
+        .font("Times-Roman")
+        .fontSize(12)
+        .text("GWA: 1.99");
 
-        // Date Issued
-        doc.font("Times-Roman")
-            .fontSize(12)
-            .text(`Date Issued: ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`, MARGIN, PAGE_HEIGHT - (MARGIN + 14));
+    // Date Issued
+    doc.font("Times-Roman")
+        .fontSize(12)
+        .text(`Date Issued: ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`, MARGIN, PAGE_HEIGHT - (MARGIN + 14));
 
-        doc.end();
-    });
+
+    doc.end();
 };

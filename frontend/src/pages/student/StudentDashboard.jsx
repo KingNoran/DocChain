@@ -116,8 +116,7 @@ const StudentDashboard = () => {
                 <div className="flex items-start space-x-4 p-4 hover:bg-gray-50 rounded-xl transition-all">
                   <IoMdDocument className="flex-shrink-0 w-12 h-12 p-2 bg-gray-100 rounded-xl text-gray-600" />
                   <Link to={`/student/transcript/${studentInfo.studentId}`}>  
-                    <div className="flex flex-col space-y-1">   
-                      {}             
+                    <div className="flex flex-col space-y-1">                
                         <span className="font-medium">Updated TOR</span>
                         <span className="text-sm text-gray-600">Date: Jan 24, 2024</span>
                         <span className="text-xs text-gray-500">Public key: f82c5wxt2559xxv</span>

@@ -7,7 +7,6 @@ import CreateAccount from "./pages/admin/CreateAccount";
 import Login from "./pages/Login";
 import LoginAccount from "./pages/LoginAccount";
 import ViewTranscript from "./pages/student/ViewTranscript";
-import TranscriptInput from "./pages/registrar/TranscriptInput";
 
 const App = () => {
     return (
@@ -20,7 +19,6 @@ const App = () => {
             <Route path="/registrar/dashboard" element={<RegistrarDashboard />} />
             <Route path="/admin/create" element={<CreateAccount />} />
             <Route path="/student/transcript/:student_number" element={<ViewTranscript />} />
-            <Route path="/registrar/transcript_input" element={<TranscriptInput />} />
         </Routes>
     );
 };
