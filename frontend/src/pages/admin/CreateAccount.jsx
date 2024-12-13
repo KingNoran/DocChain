@@ -19,7 +19,6 @@ const CreateAccount = () => {
     const { user } = useUser();
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
-    const { ethers } = require('ethers');
 
     useEffect(() => {
         if (!user || user.role !== "admin") {
