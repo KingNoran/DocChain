@@ -12,8 +12,8 @@ const AdminHeader = () =>{
         role: user.role
     };
 
-    return(
-        <div className="w-full h-[100px] bg-black flex justify-between items-center px-8">
+    return (
+        <div className="text-white w-full h-[100px] bg-black flex justify-between items-center px-8">
             <div id="logo">
                 <HomeButton destination="/admin/dashboard" />
             </div>

@@ -11,10 +11,10 @@ router.post("/create/student", async (request, response) => {
     try {
         // Ensure that input is not empty
         if (
-            !request.body.student_number ||
+            !request.body.studentNo ||
             !request.body.name ||
             !request.body.email ||
-            !request.body.hashed_password ||
+            !request.body.password ||
             !request.body.course
         ) {
             return response
@@ -23,11 +23,11 @@ router.post("/create/student", async (request, response) => {
         }
 
         // Encrypt the password
-        const password_hash = await hashPassword(request.body.hashed_password);
+        const password_hash = await hashPassword(request.body.password);
 
         // Create object
         const newStudent = {
-            student_number: request.body.student_number,
+            student_number: request.body.studentNo,
             name: request.body.name,
             email: request.body.email,
             hashed_password: password_hash,
@@ -38,7 +38,7 @@ router.post("/create/student", async (request, response) => {
         // Save to database
         const student = await Student.create(newStudent);
 
-        return response.status(201).json(student);
+        return response.status(201).send(student);
     } catch (error) {
         console.error(error);
         return response.status(500).json({ message: "An error occurred." });
@@ -52,7 +52,7 @@ router.post("/create/registrar", async (request, response) => {
         if (
             !request.body.name ||
             !request.body.email ||
-            !request.body.hashed_password
+            !request.body.password
         ) {
             return response
                 .status(400)
@@ -60,7 +60,7 @@ router.post("/create/registrar", async (request, response) => {
         }
 
         // Encrypt the password
-        const password_hash = await hashPassword(request.body.hashed_password);
+        const password_hash = await hashPassword(request.body.password);
 
         // Create object
         const newRegistrar = {
@@ -73,7 +73,7 @@ router.post("/create/registrar", async (request, response) => {
         // Save to database
         const registrar = await Registrar.create(newRegistrar);
 
-        return response.status(201).json(registrar);
+        return response.status(201).send(registrar);
     } catch (error) {
         console.error(error);
         return response.status(500).json({ message: "An error occurred." });
@@ -87,7 +87,7 @@ router.post("/create/admin", async (request, response) => {
         if (
             !request.body.name ||
             !request.body.email ||
-            !request.body.hashed_password
+            !request.body.password
         ) {
             return response
                 .status(400)
@@ -95,7 +95,7 @@ router.post("/create/admin", async (request, response) => {
         }
 
         // Encrypt the password
-        const password_hash = await hashPassword(request.body.hashed_password);
+        const password_hash = await hashPassword(request.body.password);
 
         // Create object
         const newAdmin = {
@@ -108,7 +108,7 @@ router.post("/create/admin", async (request, response) => {
         // Save to database
         const admin = await Admin.create(newAdmin);
 
-        return response.status(201).json(admin);
+        return response.status(201).send(admin);
     } catch (error) {
         console.error(error);
         return response.status(500).json({ message: "An error occurred." });
@@ -116,3 +116,4 @@ router.post("/create/admin", async (request, response) => {
 });
 
 export default router;
+
