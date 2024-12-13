@@ -1,14 +1,18 @@
+import axios from "axios";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineQrCodeScanner } from "react-icons/md";
 import { IoMdDocument } from "react-icons/io";
 import { IoNotifications } from "react-icons/io5";
-import metamaskIcon from "../../assets/metamask-icon.svg";
+import metamaskIcon from "../../assets/metamask-icon.svg" ;
 import HomeButton from "../../components/HomeButton";
+import Spinner from "../../components/Spinner"
 
 const StudentDashboard = () => {
+  const [transcript, setTranscript] = useState({});
+  const [loading, setLoading] = useState(false);
   const { user, logout } = useUser();
   const navigate = useNavigate();
 
@@ -17,6 +21,21 @@ const StudentDashboard = () => {
       navigate("/login");
     }
   }, [user, navigate]);
+
+  useEffect(() => {
+		setLoading(true);
+    const studentNumber = user.student_number;
+
+		axios.get(`http://localhost:5555/student/dashboard/${studentNumber}`)
+			.then(response => {
+				setTranscript(response.data.data);
+				setLoading(false);
+			})
+			.catch(error => {
+				console.log(error); 
+				setLoading(false);
+			});
+	}, []); 
 
   const studentInfo = {
     name: user.name,
@@ -32,10 +51,16 @@ const StudentDashboard = () => {
           <HomeButton destination="/student/dashboard" />
           
           <nav className="flex items-center space-x-8">
-            <Link to={`/student/transcript/${studentInfo.studentId}`} className="hidden md:block hover:text-blue-600 transition-all">
-              Document
-            </Link>
-            
+          {transcript && transcript.updatedAt ? (           
+              <Link to={`/student/transcript/${studentInfo.studentId}`} className="hidden md:block hover:text-blue-600 transition-all">
+                Document
+              </Link>
+            ) : (
+              <p disabled className="hidden md:block hover:text-blue-600 transition-all">
+                Document
+              </p>
+            )
+          }
             <div className="relative group">
               <button className="flex items-center space-x-2 hover:text-blue-600 transition-all">
                 <span>Profile</span>
@@ -115,14 +140,19 @@ const StudentDashboard = () => {
                 <h3 className="text-xl font-bold mb-4">Document</h3>
                 <div className="flex items-start space-x-4 p-4 hover:bg-gray-50 rounded-xl transition-all">
                   <IoMdDocument className="flex-shrink-0 w-12 h-12 p-2 bg-gray-100 rounded-xl text-gray-600" />
-                  <Link to={`/student/transcript/${studentInfo.studentId}`}>  
-                    <div className="flex flex-col space-y-1">   
-                      {}             
-                        <span className="font-medium">Updated TOR</span>
-                        <span className="text-sm text-gray-600">Date: Jan 24, 2024</span>
-                        <span className="text-xs text-gray-500">Public key: f82c5wxt2559xxv</span>
-                    </div>
-                  </Link>
+                  {transcript && transcript.updatedAt ? (
+                      <Link to={`/student/transcript/${studentInfo.studentId}`}>  
+                        {loading ? <Spinner /> : ''}
+                        <div className="flex flex-col space-y-1">                
+                            <span className="font-medium">Updated TOR</span>
+                            <span className="text-sm text-gray-600">Date: {new Date(transcript.updatedAt).toLocaleString()}</span>
+                            <span className="text-xs text-gray-500">Public key: f82c5wxt2559xxv</span>
+                        </div>
+                      </Link>
+                    ) : (
+                      <span className="font-medium">TOR not available</span>
+                    )
+                  }   
                 </div>
               </div>
 
