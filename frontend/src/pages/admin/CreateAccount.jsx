@@ -19,6 +19,7 @@ const CreateAccount = () => {
     const { user } = useUser();
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
+    const { ethers } = require('ethers');
 
     useEffect(() => {
         if (!user || user.role !== "admin") {
@@ -27,7 +28,24 @@ const CreateAccount = () => {
         }
     }, [user, navigate]);
 
+    // Connection to Blockchain
+    async function connect() {
+        if (typeof window.ethereum !== "undefined") {
+          try {
+            await ethereum.request({ method: "eth_requestAccounts" })
+          } catch (error) {
+            console.log(error)
+          }
+          connectButton.innerHTML = "Connected"
+          const accounts = await ethereum.request({ method: "eth_accounts" })
+          console.log(accounts)
+        } else {
+          connectButton.innerHTML = "Please install MetaMask"
+        }
+      }      
+
     const handleSubmit = (event) => {
+        connect();
         event.preventDefault();
 
         if (role !== "student") {

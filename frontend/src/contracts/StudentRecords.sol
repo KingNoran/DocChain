@@ -21,7 +21,7 @@
 // private
 // view & pure functions
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.28;
 
 contract StudentRecords{
     uint256 public studentNumber;
