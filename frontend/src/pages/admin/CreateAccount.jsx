@@ -30,15 +30,15 @@ const CreateAccount = () => {
     // Connection to Blockchain
     async function connect() {
         if (typeof window.ethereum !== "undefined") {
-          try {
+            try {
             await ethereum.request({ method: "eth_requestAccounts" })
-          } catch (error) {
+            } catch (error) {
             console.log(error)
           }
           const accounts = await ethereum.request({ method: "eth_accounts" })
           console.log(accounts)
         }
-      }      
+    }      
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -85,7 +85,7 @@ const CreateAccount = () => {
             <div className="flex flex-col justify-center items-center">
                 <h1 className="text-4xl m-16 font-semibold">Create Account</h1>
                 <form
-                    className="w-1/3 flex flex-col gap-5 items-center px-10 py-7 border-2 border-black rounded-lg"
+                    className="w-1/3 flex flex-col gap-5 mb-10 items-center px-10 py-7 border-2 border-black rounded-lg"
                     onSubmit={handleSubmit}
                 >
                     {loading ? <Spinner /> : ''}
