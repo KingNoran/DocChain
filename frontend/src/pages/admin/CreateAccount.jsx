@@ -41,7 +41,6 @@ const CreateAccount = () => {
       }      
 
     const handleSubmit = (event) => {
-        connect();
         event.preventDefault();
 
         if (role !== "student") {
@@ -70,12 +69,14 @@ const CreateAccount = () => {
                 setEmail("");
                 setPassword("");
                 setCourse("");
+                connect();
             })
             .catch(error => {
                 setLoading(false);
                 console.log(error);
                 enqueueSnackbar('Error making the account', { variant: 'error' });   
             });
+        
     };
 
     return user && user.role === "admin" ? (
